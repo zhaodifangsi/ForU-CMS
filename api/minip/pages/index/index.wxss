@@ -1,0 +1,2 @@
+.container{ font-size:12px; }
+#slider image{width:100vw; height:38vw;}

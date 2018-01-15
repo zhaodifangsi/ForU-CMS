@@ -1,0 +1,54 @@
+<!--pages/detail/detail.wxml-->
+<!-- swiper -->
+<swiper wx:if="{{imgs.length}}" indicator-dots="true" autoplay="false" interval="5000" duration="1000">
+  <block wx:for="{{imgs}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 倒计时 -->
+<view class="timer" id="timer">
+  <view class="timer-text">
+    <view class="countDown">拼团时间仅剩</view>
+    <view class="countDown">{{clock}}</view>
+  </view>
+</view>
+<!-- 价格&分享 -->
+<view class="main pos-rel">
+  <view class="price">
+    <view class="cprice fl">￥<view>{{price[0]}}</view></view>
+    <view class="fl">
+      <view class="oprice">￥{{price[1]}}</view>
+      <view class="tag">
+        <block wx:for="{{tags}}" wx:key="{{index}}">
+          <view>{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <button class="share" open-type="share"><image src="../../images/share/share.jpg"/></button>
+  <view class="split"></view>
+  <view class="p-name">{{ex.d_name}}</view>
+  <view class="p-desc">{{ex.d_code}}</view>
+</view>
+<view class="split-gray"></view>
+<!-- 拼团规则 -->
+<image src="../../images/share/rule.jpg" class="img-rule" bindtap="showRule"/>
+<view class="split-gray"></view>
+<!-- 属性 -->
+<view class="main">
+  <view>颜色:</view>
+  <view>尺码:</view>
+</view>
+<view class="split-gray"></view>
+<!-- 商品信息 -->
+<view class="split-gray"></view>
+<!-- 商品详情 -->
+<view class="main">
+  <view class="content">
+    <!-- content -->
+    <import src="../../utils/wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+</view>

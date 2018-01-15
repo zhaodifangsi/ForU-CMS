@@ -1,0 +1,18 @@
+/* pages/detail/detail.wxss */
+swiper,swiper image{width:100vw;height:70vw;}
+.timer{width: 100vw;height:11vw;background: url(http://shadow.s1.natapp.cc/api/minip/images/share/time.jpg) no-repeat;background-size: cover;overflow: hidden;position: relative;}
+.timer-text{position: absolute; right:0; top:1.2vw;}
+.countDown{width:40vw;z-index:5;font-size: 3.125vw;text-align: center;color: #FFFFFF;}
+.title{font-size: 16px;font-weight:bold;margin-bottom: 1em; text-align: center;}
+.date{font-size: 12px;margin-bottom: 1em; text-align: center;}
+.content{padding-bottom: 2rem; font-size: 16px; line-height: 1.4rem;}
+.cprice{color:#CC0000;padding-right: 10px;font-size: 20px;}
+.cprice view{font-size: 32px;display: inline;line-height: 32px;}
+.oprice{font-size: 11px;color:#CCCCCC;text-decoration: line-through;}
+.tag view{background-color: #F3E3E3;display: inline-block;margin-right: 5px;font-size: 11px;color:#CC0000;}
+.p-name{font-size: 16px;padding:0 5px;line-height: 1.5em;}
+.p-desc{font-size: 12px; color: #CCCCCC;padding:0 5px;}
+.share,.share image{width:36px;height:36px;}
+button.share{position: absolute;right:10px;top:15px;border:none;border-radius: 0;padding: 0;}
+button:after{content:none;}
+.img-rule{width:100vw;height: 20vw;}
