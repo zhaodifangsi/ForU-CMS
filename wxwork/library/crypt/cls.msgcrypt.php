@@ -1,5 +1,4 @@
 <?php
-namespace Wxwork;
 /**
  * 对企业微信发送给企业的消息加解密示例代码.
  *
@@ -52,14 +51,14 @@ class WXBizMsgCrypt
 
 		$pc = new Prpcrypt($this->m_sEncodingAesKey);
 		//verify msg_signature
-		$sha1 = new SHA1;
-		$array = $sha1->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $sEchoStr);
+		$sha = new SHA1;
+		$array = $sha->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $sEchoStr);
 		$ret = $array[0];
 
 		if ($ret != 0) {
 			return $ret;
 		}
-
+		// var_dump($array);exit;
 		$signature = $array[1];
 		if ($signature != $sMsgSignature) {
 			return ErrorCode::$ValidateSignatureError;
@@ -106,8 +105,8 @@ class WXBizMsgCrypt
 		$encrypt = $array[1];
 
 		//生成安全签名
-		$sha1 = new SHA1;
-		$array = $sha1->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $encrypt);
+		$sha = new SHA1;
+		$array = $sha->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $encrypt);
 		$ret = $array[0];
 		if ($ret != 0) {
 			return $ret;
@@ -162,8 +161,8 @@ class WXBizMsgCrypt
 		$touser_name = $array[2];
 
 		//验证安全签名
-		$sha1 = new SHA1;
-		$array = $sha1->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $encrypt);
+		$sha = new SHA1;
+		$array = $sha->getSHA1($this->m_sToken, $sTimeStamp, $sNonce, $encrypt);
 		$ret = $array[0];
 
 		if ($ret != 0) {

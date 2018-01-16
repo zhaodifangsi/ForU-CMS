@@ -8,13 +8,7 @@ $signPackage = $jssdk->getSignPackage();
  */
 
 class Base {
-  private $corpId;
-  private $corpSecret;
-
-  public function __construct($corpId, $corpSecret) {
-    $this->corpId = $corpId;
-    $this->corpSecret = $corpSecret;
-  }
+  public function __construct() {}
 
   public function getSignPackage() {
     $jsapiTicket = $this->getJsApiTicket();
@@ -29,7 +23,7 @@ class Base {
     $signature = sha1($string);
 
     $signPackage = array(
-      "appId"     => $this->corpId,
+      "appId"     => CORPID,
       "nonceStr"  => $nonceStr,
       "timestamp" => $timestamp,
       "url"       => $url,
@@ -50,18 +44,18 @@ class Base {
 
   private function getJsApiTicket() {
     // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode(file_get_contents("../jsapi_ticket_work.json"), true);
+    $data = json_decode(file_get_contents("../jsapi_ticket_work.json"));
     $expire_time = !empty($data->expire_time) ? $data->expire_time : 0;
     if ($expire_time < time()) {
       $access_token = $this->getAccessToken();
       $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$access_token";
-      $res = json_decode(\http_get($url), true);
-      $ticket = $res['ticket'];
+      $res = json_decode(\http_get($url));
+      $ticket = $res->ticket;
       if ($ticket) {
-        $data['expire_time'] = time() + 7000;
-        $data['jsapi_ticket']= $ticket;
+        $arr['expire_time'] = time() + 7000;
+        $arr['jsapi_ticket'] = $ticket;
         $fp = fopen("../jsapi_ticket_work.json", "w");
-        fwrite($fp, json_encode($data));
+        fwrite($fp, json_encode($arr));
         fclose($fp);
       }
     } else {
@@ -73,17 +67,17 @@ class Base {
 
   public function getAccessToken() {
     // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode(file_get_contents("../access_token_work.json"), true);
+    $data = json_decode(file_get_contents("../access_token_work.json"));
     $expire_time = !empty($data->expire_time) ? $data->expire_time : 0;
     if ($expire_time < time()) {
-      $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->corpId&corpsecret=$this->corpSecret";
-      $res = json_decode(\http_get($url), true);
-      $access_token = $res['access_token'];
+      $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=".CORPID."&corpsecret=".APPSCRET;
+      $res = json_decode(\http_get($url));
+      $access_token = $res->access_token;
       if ($access_token) {
-        $data['expire_time'] = time() + 7000;
-        $data['access_token'] = $access_token;
+        $arr['expire_time'] = time() + 7000;
+        $arr['access_token'] = $access_token;
         $fp = fopen("../access_token_work.json", "w");
-        fwrite($fp, json_encode($data));
+        fwrite($fp, json_encode($arr));
         fclose($fp);
       }
     } else {

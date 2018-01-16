@@ -1,6 +1,8 @@
 <?php
 namespace Wxwork;
 class Msg extends Base {
+  public function __construct() {}
+
   // 查询电子发票
   // $data = '{"card_id":"发票ID" , "encrypt_code":"ENCRYPTCODE"}';
   public function getInfo($data){

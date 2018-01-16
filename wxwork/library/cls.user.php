@@ -2,6 +2,7 @@
 namespace Wxwork;
 
 class User {
+  public function __construct() {}
 
   public function userCreate($access_token) {
     $url = "https://qyapi.weixin.qq.com/cgi-bin/user/create?access_token=$access_token";

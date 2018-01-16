@@ -1,6 +1,8 @@
 <?php
 namespace Wxwork;
 class Pay extends Base {
+  public function __construct() {}
+
   /* 企业红包 */
   // 发放企业红包
   // $data = '<xml> <nonce_str>5K8264ILTKCH16CQ2502SI8ZNMTM67VS</nonce_str> <sign>C380BEC2BFD727A4B6845133519F3AD6</sign> <mch_billno>123456</mch_billno> <mch_id>10000098</mch_id> <wxappid>wx8888888888888888</wxappid> <sender_name>XX活动</sender_name> <sender_header_media_id>1G6nrLmr5EC3MMb_-zK1dDdzmd0p7cNliYu9V5w7o8K0</sender_header_media_id> <re_openid>oxTWIuGaIt6gTKsQRLau2M0yL16E</re_openid> <total_amount>1000</total_amount> <wishing>感谢您参加猜灯谜活动，祝您元宵节快乐！</wishing> <act_name>猜灯谜抢红包活动</act_name> <remark>猜越多得越多，快来抢！</remark> <workwx_sign>99BCDAFF065A4B95628E3DB468A874A8</workwx_sign> </xml>';

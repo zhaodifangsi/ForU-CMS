@@ -2,11 +2,12 @@
 namespace Wxwork;
 // 仅企业可调用
 class Menu extends Base {
+
   // 创建菜单
   public function setMenu($agent_id, $data){
     $access_token = $this->getAccessToken();
     $url = "https://qyapi.weixin.qq.com/cgi-bin/menu/create?access_token=$access_token&agentid=$agent_id";
-    return json_decode(\https_post($url), $data);
+    return json_decode(\https_post($url, $data));
   }
 
   // 获取菜单

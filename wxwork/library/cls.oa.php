@@ -1,6 +1,8 @@
 <?php
 namespace Wxwork;
 class OA extends Base {
+  public function __construct() {}
+
   // 获取打卡规则
   // $data = {"datetime": 1511971200, "useridlist": ["james","paul"] }
   // 用户列表不超过100个，若用户超过100个，请分批获取。

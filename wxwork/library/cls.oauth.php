@@ -1,6 +1,8 @@
 <?php
 namespace Wxwork;
 class Oauth extends Base {
+  public function __construct() {}
+
   // 获取code
   // scope:['snsapi_base','snsapi_userinfo','snsapi_privateinfo']
   // 静默授权，可获取成员的基本信息;静默授权，可获取成员的敏感信息，但不包含手机、邮箱；手动授权，可获取成员的敏感信息，包含手机、邮箱

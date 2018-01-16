@@ -1,6 +1,6 @@
 <?php
-namespace Wxwork;
 include_once "library/crypt/cls.errorcode.php";
+
 /**
  * SHA1 class
  *

@@ -1,6 +1,8 @@
 <?php
 namespace Wxwork;
 class App extends Base {
+  public function __construct() {}
+
   // 获取应用
   public function getApp($agent_id){
     $access_token = $this->getAccessToken();

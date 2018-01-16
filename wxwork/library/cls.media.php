@@ -9,6 +9,8 @@ namespace Wxwork;
  * image:2M;voice:2M;video:10M;file:20M
  */
 class Media extends Base {
+  public function __construct() {}
+
   // 获取上传url
   public function getUrl($type){
     $access_token = $this->getAccessToken();

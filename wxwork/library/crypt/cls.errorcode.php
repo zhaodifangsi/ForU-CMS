@@ -1,5 +1,4 @@
 <?php
-namespace Wxwork;
 /**
  * error code 说明.
  * <ul>

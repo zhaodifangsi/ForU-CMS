@@ -1,9 +1,10 @@
 <?php
-include '../../config/wxwork.php';
 include '../../library/inc.php';
+include '../config/wxwork.php';
+include '../config/notice.php';
 include '../library/cls.base.php';
 //第一步: 生成JSAPI签名
-$wxbase = new \Wxwork\Base(CORPID, APPSCRET);
+$wxbase = new \Wxwork\Base();
 $signPackage = $wxbase->getSignPackage();
 ?>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ $signPackage = $wxbase->getSignPackage();
                     </div>
                 </div>
             </div>
-
+<!--
             <div class="weui-cells__title">主题:</div>
             <div class="weui-cells">
                 <div class="weui-cell">
@@ -43,12 +44,12 @@ $signPackage = $wxbase->getSignPackage();
                     </div>
                 </div>
             </div>
-
+-->
             <div class="weui-cells__title">内容:</div>
             <div class="weui-cells weui-cells_form">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
-                        <textarea class="notice-msg weui-textarea" placeholder="请输入文本" rows="3" minlength="5" maxlength="200" required></textarea>
+                        <textarea class="notice-msg weui-textarea" placeholder="请输入内容" rows="3" minlength="5" maxlength="200" required></textarea>
                         <div class="weui-textarea-counter"><span>0</span>/200</div>
                     </div>
                 </div>
@@ -69,6 +70,7 @@ $signPackage = $wxbase->getSignPackage();
 <!-- 引入文件 -->
 <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
 <script>
 wx.config({
     beta: true,// 必须这么写，否则在微信插件有些jsapi会有问题
@@ -82,21 +84,34 @@ wx.config({
     // 'onMenuShareAppMessage', 'onMenuShareWechat', 'startRecord', 'stopRecord', 'onVoiceRecordEnd', 'playVoice', 'pauseVoice', 'stopVoice', 'onVoicePlayEnd', 'uploadVoice', 'downloadVoice', 'chooseImage', 'previewImage', 'uploadImage', 'downloadImage', 'previewFile', 'getNetworkType', 'openLocation', 'getLocation', 'onHistoryBack', 'hideOptionMenu', 'showOptionMenu', 'hideMenuItems', 'showMenuItems', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem', 'closeWindow', 'scanQRCode', 'selectEnterpriseContact', 'openEnterpriseChat', 'chooseInvoice'
 });
 $(function(){
+    $('.notice-msg').on('input', function(){
+        var max = 200;
+        var text = $(this).val();
+        var len = text.length;
+        $('.weui-textarea-counter>span').text(len);
+        if (len > max) {
+            $(this).closest('.weui_cell').addClass('weui_cell_warn');
+        } else {
+            $(this).closest('.weui_cell').removeClass('weui_cell_warn');
+        }
+    });
+
     $('.notice-btn').click(function(){
         var str_dept = $('.notice-user').attr('data-dept');
         var str_user = $('.notice-user').attr('data-user');
-        var subject = $('.notice-subject').val();
+        // var subject = $('.notice-subject').val();
         var msg = $('.notice-msg').val();
 
         $.ajax({
-            url:'ajax.php',
-            data:'act=send_notice&dept_ids='+str_dept+'&user_ids='+str_user+'&subject='+subject+'&msg='+msg,
-            type:'post',
+            url:"ajax.php",
+            data:"act=send_notice&dept_ids="+str_dept+"&user_ids="+str_user+"&msg="+msg,
+            type:"post",
             success:function(res){
                 if (res.errcode==0) {
                     alert(res.msg);
                 } else {
-                    console.log(res);
+                    // console.log(res);
+                    alert(res);
                 }
             },
             error:function(){
@@ -106,6 +121,7 @@ $(function(){
     });
 
     $('.notice-user').click(function(){
+        var that = $(this);
         wx.invoke("selectEnterpriseContact", {
             "fromDepartmentId": 0,// 必填，-1表示打开的通讯录从自己所在部门开始展示, 0表示从最上层开始
             "mode": "multi",// 必填，选择模式，single表示单选，multi表示多选
@@ -127,7 +143,7 @@ $(function(){
                     str_dept += (i>0 ? '|'+departmentId : departmentId);
                     str_dept_name += departemntName+' ';
                 }
-                $('.contact').attr('data-dept',str_dept);
+                that.attr('data-dept',str_dept);
 
                 var selectedUserList = res.result.userList; // 已选的成员列表
                 var str_user = '';
@@ -140,9 +156,9 @@ $(function(){
                     str_user += (i>0 ? '|'+userId : userId);
                     str_user_name += userName+' ';
                 }
-                $('.contact').attr('data-user',str_user);
+                that.attr('data-user',str_user);
 
-                $('.contact').val(str_dept_name + str_user_name);
+                that.val(str_dept_name + str_user_name);
             }
         });
     });
