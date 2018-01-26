@@ -132,7 +132,7 @@ function getOrderInfo($cart) {
   $str = rtrim($str,"|");
   return array(
     'u_id'=>getUserToken('id'),
-    'o_id'=>microtime_float(),
+    'o_sn'=>microtime_float(),
     'o_info'=>$str,
     'o_qty'=>$cart['total_items'],
     'o_cost'=>$cart['cart_total'],

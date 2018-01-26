@@ -23,7 +23,7 @@ $ext_arr = array(
 	'flash' => array('swf'),
 	'flv' => array('flv', 'f4v', 'mp4'),
 	'media' => array('swf', 'flv', 'mp3', 'wav', 'wma', 'wmv', 'mid', 'avi', 'mpg', 'asf', 'rm', 'rmvb'),
-	'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'htm', 'html', 'txt', 'zip', 'rar', 'gz', 'bz2', 'pdf', 'apk', 'ipa'),
+	'file' => array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'txt', 'zip', 'rar', 'gz', 'bz2', 'pdf', 'apk', 'ipa'),
 );
 //最大文件大小
 $max_size = 500*1024*1024; //G*M*K*B

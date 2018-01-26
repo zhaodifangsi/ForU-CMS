@@ -167,13 +167,13 @@ INSERT INTO `link` (`id`,`l_type`,`l_name`,`l_order`,`l_link`,`l_picture`) VALUE
 CREATE TABLE `order` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `u_id` int(11) NOT NULL,
-  `o_id` varchar(50) NOT NULL,
+  `o_sn` varchar(50) NOT NULL,
   `o_info` varchar(20000) NOT NULL,
   `o_qty` int(10) NOT NULL,
   `o_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
   `o_state` int(2) NOT NULL DEFAULT '1',
   `o_date` int(10) NOT NULL,
-  PRIMARY KEY (`id`,`u_id`,`o_id`)
+  PRIMARY KEY (`id`,`u_id`,`o_sn`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 -- ----------
 CREATE TABLE `role` (

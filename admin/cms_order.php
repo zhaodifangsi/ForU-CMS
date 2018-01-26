@@ -90,7 +90,7 @@ if (isset($_POST['execute'])) {
                   $order = "ORDER BY id ASC";
                 else
                   $order = "ORDER BY id DESC";
-                $where = "WHERE id>0".(!empty($_GET['key'])?" AND o_id LIKE '%".$_GET['key']."%'":"");
+                $where = "WHERE id>0".(!empty($_GET['key'])?" AND o_sn LIKE '%".$_GET['key']."%'":"");
                 $page = new Page(20);
                 $page->handle($db->getOne("SELECT COUNT(*) FROM order $where"));
                 $res = $db->getAll("SELECT * FROM order $where $order LIMIT ".$page->page_start.",".$page->page_size);
@@ -99,7 +99,7 @@ if (isset($_POST['execute'])) {
                 ?>
                 <tr>
                   <td><input type="checkbox" name="id[]" value="<?php echo $row['id'];?>" /></td>
-                  <td><?php echo $row['o_id'] ?></td>
+                  <td><?php echo $row['o_sn'] ?></td>
                   <td><?php echo $row['o_qty'];?></td>
                   <td><?php echo $row['o_cost'];?></td>
                   <td><?php echo local_date('y-m-d', $row['d_date']);?></td>

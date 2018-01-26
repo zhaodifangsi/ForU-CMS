@@ -18,7 +18,6 @@ if (isset($_POST['submit'])) {
   $data['d_ifattachment'] = !empty($data['d_attachment']) ? 1 : 0;
   $data['d_content'] = $_POST['d_content'];
   $data['d_scontent'] = $_POST['d_scontent'];
-  $data['d_code'] = $_POST['d_code'];
   $data['d_source'] = $_POST['d_source'];
   $data['d_author'] = $_POST['d_author'];
   $data['d_seoname'] = $_POST['d_seoname'];
