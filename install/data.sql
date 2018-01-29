@@ -284,7 +284,7 @@ INSERT INTO `user_level` (`id`,`ul_name`,`ul_content`,`ul_point`) VALUES ('1','æ
 -- ----------
 CREATE TABLE `user_session` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `session_id` varchar(30) NOT NULL,
+  `session_id` varchar(50) NOT NULL,
   `u_id` int(11) NOT NULL,
   PRIMARY KEY (`id`,`session_id`,`u_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
