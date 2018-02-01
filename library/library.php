@@ -57,7 +57,7 @@ function str_text($str, $ext = 0) {
   }
 }
 function array_str($arr, $p=',') {
-  if (strpos($arr,$p)!==false) {
+  if (is_array($arr)) {
     return implode($p, $arr);
   } else {
     return $arr;
