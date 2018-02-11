@@ -1,73 +1,71 @@
 /**app.wxss**/
 @import "utils/wxParse/wxParse.wxss";
-page{
-  background-color: #FFFFFF;
-}
+@import "weui/weui.wxss";
 .main{
-  padding: 3%;
-  word-break: break-all;
-  font-size:14px;
+    padding: 3%;
+    word-break: break-all;
+    font-size:14px;
 }
 .ttl{
-  margin:3% 3% 0;
-  /*background-image: linear-gradient(to top, #EEEEEE, #7093c0);*/
-  background-color: #0168c0;
-  color: #FFF;
-  padding: 2%;
-  border:1px solid #FFF;
-  border-radius: 5px;
-  box-shadow:0 0 5px #DDD;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
+    margin:3% 3% 0;
+    /*background-image: linear-gradient(to top, #EEEEEE, #7093c0);*/
+    background-color: #0168c0;
+    color: #FFF;
+    padding: 2%;
+    border:1px solid #FFF;
+    border-radius: 5px;
+    box-shadow:0 0 5px #DDD;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
 }
 .container{
-  padding:3%;
-  background-color: #FFF;
-  border-radius: 5px;
-  box-shadow:0 0 5px #EEE;
-  font-size: 14px;
-  line-height: 1.6em;
+    padding:3%;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow:0 0 5px #EEE;
+    font-size: 14px;
+    line-height: 1.6em;
 }
 .center{
-  text-align: center;
+    text-align: center;
 }
 .fl{
-  float:left;
+    float:left;
 }
 .fr{
-  float:right;
+    float:right;
 }
 .pos-rel{
-  position:relative;
+    position:relative;
 }
 .split{
-  display: block;
-  height: 10px;
-  clear: both;
+    display: block;
+    height: 10px;
+    clear: both;
 }
 .split-gray{
-  display: block;
-  height: 10px;
-  background-color: #EEEEEE;
-  clear: both;
+    display: block;
+    height: 10px;
+    background-color: #EEEEEE;
+    clear: both;
 }
 .wxParse-img{
-  display:block;
-  max-width:100%;
+    display:block;
+    max-width:100%;
 }
 .wxParse-tr{
-  margin-top:-1px;
+    margin-top:-1px;
 }
 .wxParse-tr:first-of-type{
-  margin-top:0px;
+    margin-top:0px;
 }
 .wxParse-th{
-  border-top:none;
+    border-top:none;
 }
 .wxParse-p{
-  margin-bottom:1em;
-  line-height:1.6em
+    margin-bottom:1em;
+    line-height:1.6em
 }
 
 swiper#banner{height:38vw;}

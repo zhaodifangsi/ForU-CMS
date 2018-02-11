@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="zan-panel-title">基础信息</view>
+  <view class="zan-panel">
+    <template is="zan-field" data="{{ title: '收货人', type: 'input', placeholder: addr_name?addr_name:'请输入姓名', componentId: 'addr-name' }}"></template>
+    <template is="zan-field" data="{{ title: '联系电话', type: 'input', inputType: 'number', placeholder: addr_mobile?addr_mobile:'请输入手机号', error: true, componentId: 'addr-mobile' }}"></template>
+  </view>
+
+  <view class="zan-panel-title">地址信息</view>
+  <view class="zan-panel">
+    <template is="zan-field" data="{{ title: '收货地址', type: 'text', placeholder: addr_address?'请输入更新地址':'请输入详细地址', componentId: 'addr-address' }}"></template>
+    <view class="zan-cell">
+      <view class="zan-cell__bd zan-font-12">
+        {{addr_address}}
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd zan-c-gray zan-font-12">
+        请核实信息的正确性, 防止给您的收货带来不便
+      </view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <button class="zan-btn zan-btn--primary" bindtap="addrSubmit">提交</button>
+      </view>
+    </view>
+  </view>
+</view>

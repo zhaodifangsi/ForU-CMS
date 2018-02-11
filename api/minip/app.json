@@ -1,12 +1,12 @@
 {
   "pages":[
+    "pages/user/login",
     "pages/index/index",
     "pages/index/lottery",
     "pages/list/product",
     "pages/detail/prod",
-    "pages/user/check",
-    "pages/user/login",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/user/addr"
   ],
   "window":{
     "backgroundTextStyle": "dark",
@@ -33,7 +33,7 @@
         "selectedIconPath": "images/share/nav/21.png"
       },
       {
-        "pagePath": "pages/user/check",
+        "pagePath": "pages/user/login",
         "text": "用户",
         "iconPath": "images/share/nav/3.png",
         "selectedIconPath": "images/share/nav/31.png"

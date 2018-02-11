@@ -1,80 +1,90 @@
-var app = getApp();
+var app = getApp()
+var user = require('../../utils/user.js')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  data:{
+    mobNum:'',
+    mobCode:''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {},
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.getOpenId()
-    this.login()
+  onLoad: function () {
+    user.getUserInfo()
+    user.getUserOpenId()
   },
 
-  login:function(){
-    var name = 'admin'
-    var pass = 'admin'
-    var oid = wx.getStorageSync('openid')
-    wx.request({
-      url: app.gData.apiUrl + 'user.php?act=login&name='+name+'&pass='+pass+'&oid='+oid,
-      success:function(e){
-        if (e.data.err==0){
-          wx.navigateTo({
-            url: '../user/index',
-          })
+  mobLogin: function(){
+    if (this.data.mobNum!='' && this.data.mobCode!='') {
+      var openid = wx.getStorageSync('openid')
+      wx.request({
+        url:app.gData.apiUrl+'user.php?act=login&openid='+openid+'&mobnum='+this.data.mobNum,
+        success:function(e){
+          if (e.data.err==0) {
+            wx.setStorageSync('userState', true)
+            wx.setStorageSync('uid', e.data.ex)
+            wx.navigateTo({
+              url: '../user/index',
+            })
+          } else {
+            user.checkFail();
+          }
         }
-      },
-      fail:function(){
-        wx.showToast({
-          title: '小程序端登录失败，请稍后重试！',
-          duration: 3000
-        })
-      }
+      })
+    } else {
+      wx.showModal({
+        content: '请核对手机号及验证码正确后重试',
+        showCancel: false
+      });
+    }
+  },
+
+  weLogin: function(){
+    console.log(app.gData.userInfo)
+    user.checkUser()
+    wx.navigateTo({
+      url: '../user/index',
     })
   },
 
-  getOpenId:function(){
-    wx.login({
-      success:function(res) {
-        if (res.code) {
-          console.log(res)
-          //发起网络请求
-          wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session?appid='+app.gData.appId+'&secret='+app.gData.appSe+'&js_code='+res.code+'&grant_type=authorization_code',
-            success:function(rs){
-              console.log(rs.data)
-              wx.setStorageSync('openid', rs.data.openid);
-            },
-            fail:function(){
-              wx.showToast({
-                title: '无法获取用户登录信息，请稍后重试！',
-                duration: 2000
-              })
-            }
-          })
-        } else {
-          wx.showToast({
-            title: '获取用户登录态失败！',
-            duration: 2000
-          })
-        }
-      },
-      fail:function(){
-        wx.showToast({
-            title: '用户尝试登录失败！',
-            duration: 2000
-          })
+  getMobNum: function(e){
+    console.log(e.detail.value)
+    if (!(/^1[34578]\d{9}$/.test(e.detail.value))) {
+      wx.showModal({
+        content: '手机号有误',
+        showCancel: false
+      });
+      return false;
+    } else {
+      this.setData({
+        mobNum:e.detail.value
+      })
+      return true;
+    }
+  },
+
+  getMobCode: function(e){
+    if (e.detail.value != wx.getStorageSync('mobCode')) {
+      wx.showModal({
+        content: '验证码有误',
+        showCancel: false
+      });
+      return false;
+    } else {
+      this.setData({
+        mobCode:e.detail.value
+      })
+      return true;
+    }
+  },
+
+  setMobCode: function(){
+    var openid = wx.getStorageSync('openid')
+    wx.request({
+      url:app.gData.apiUrl + 'user.php?act=getMobileCode&openid=' + openid,
+      success:function(res){
+        console.log(res.data)
+        wx.setStorageSync('mobCode', res.data.ex);
       }
-    });
+    })
   }
+
 })

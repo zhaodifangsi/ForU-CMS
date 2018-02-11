@@ -35,7 +35,7 @@ Page({
   getListProd:function(){
     var that = this
     wx.request({
-      url: app.gData.apiUrl + 'common.php?act=getList&id=3&size=6',
+      url: app.gData.apiUrl + 'common.php?act=getListGoods&id=3&size=6',
       dataType: 'json',
       success: function (e) {
         console.log(e.data.ex)

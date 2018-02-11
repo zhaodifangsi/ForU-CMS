@@ -1,6 +1,6 @@
 /* pages/detail/detail.wxss */
 swiper,swiper image{width:100vw;height:70vw;}
-.timer{width: 100vw;height:11vw;background: url(http://shadow.s1.natapp.cc/api/minip/images/share/time.jpg) no-repeat;background-size: cover;overflow: hidden;position: relative;}
+.timer{width: 100vw;height:11vw;background: url(http://minip.foru.net.cn/api/minip/images/share/time.jpg) no-repeat;background-size: cover;overflow: hidden;position: relative;}
 .timer-text{position: absolute; right:0; top:1.2vw;}
 .countDown{width:40vw;z-index:5;font-size: 3.125vw;text-align: center;color: #FFFFFF;}
 .title{font-size: 16px;font-weight:bold;margin-bottom: 1em; text-align: center;}
