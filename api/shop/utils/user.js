@@ -29,6 +29,7 @@ function getUserOpenId(){
           fail: function(error) {
             console.info("获取用户openId失败");
             console.info(error);
+            checkFail()
           }
         })
       }

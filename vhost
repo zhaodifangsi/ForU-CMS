@@ -1,0 +1,25 @@
+<VirtualHost *:80>
+    DocumentRoot "D:\phpStudy\WWW\4u"
+    ServerName beta.foru.net.cn
+    ServerAlias
+  <Directory "D:\phpStudy\WWW\4u">
+      Options FollowSymLinks ExecCGI
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+      Require all granted
+  </Directory>
+</VirtualHost>
+
+Listen 443
+<VirtualHost *:443>
+    DocumentRoot "D:\phpStudy\WWW\4u"
+    ServerName beta.foru.net.cn
+    ServerAlias
+    SSLEngine on
+    SSLProtocol all -SSLv2 -SSLv3
+    SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM
+    SSLCertificateFile "cert\public.pem"
+    SSLCertificateKeyFile "cert\214280280230016.key"
+    SSLCertificateChainFile "cert\chain.pem"
+</VirtualHost>

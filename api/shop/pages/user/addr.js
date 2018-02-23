@@ -1,4 +1,5 @@
 var app = getApp();
+var user = require('../../utils/user.js')
 var addr_name='';
 var addr_mobile='';
 var addr_address='';
@@ -11,6 +12,7 @@ Page({
   },
 
   onLoad: function () {
+    user.checkUser()
     wx.showLoading({
       title: '加载中',
     })

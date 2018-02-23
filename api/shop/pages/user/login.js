@@ -13,7 +13,8 @@ Page({
   },
 
   mobLogin: function(){
-    if (this.data.mobNum!='' && this.data.mobCode!='') {
+    if (this.data.mobCode == wx.getStorageSync('mobCode')) {
+      console.log('验证码正确')
       var openid = wx.getStorageSync('openid')
       wx.request({
         url:app.gData.apiUrl+'user.php?act=login&openid='+openid+'&mobnum='+this.data.mobNum,
@@ -31,7 +32,7 @@ Page({
       })
     } else {
       wx.showModal({
-        content: '请核对手机号及验证码正确后重试',
+        content: '验证码错误',
         showCancel: false
       });
     }
@@ -39,7 +40,6 @@ Page({
 
   weLogin: function(){
     console.log(app.gData.userInfo)
-    user.checkUser()
     wx.navigateTo({
       url: '../user/index',
     })
@@ -47,44 +47,34 @@ Page({
 
   getMobNum: function(e){
     console.log(e.detail.value)
-    if (!(/^1[34578]\d{9}$/.test(e.detail.value))) {
+    this.setData({
+      mobNum: e.detail.value
+    })
+  },
+
+  getMobCode: function(e){
+    console.log(e.detail.value)
+    this.setData({
+      mobCode:e.detail.value
+    })
+  },
+
+  setMobCode: function(){
+    if (!(/^1[34578]\d{9}$/.test(this.data.mobNum))) {
       wx.showModal({
         content: '手机号有误',
         showCancel: false
       });
-      return false;
     } else {
-      this.setData({
-        mobNum:e.detail.value
+      var openid = wx.getStorageSync('openid')
+      wx.request({
+        url:app.gData.apiUrl + 'user.php?act=getMobileCode&openid=' + openid,
+        success:function(res){
+          console.log(res.data)
+          wx.setStorageSync('mobCode', res.data.ex);
+        }
       })
-      return true;
     }
-  },
-
-  getMobCode: function(e){
-    if (e.detail.value != wx.getStorageSync('mobCode')) {
-      wx.showModal({
-        content: '验证码有误',
-        showCancel: false
-      });
-      return false;
-    } else {
-      this.setData({
-        mobCode:e.detail.value
-      })
-      return true;
-    }
-  },
-
-  setMobCode: function(){
-    var openid = wx.getStorageSync('openid')
-    wx.request({
-      url:app.gData.apiUrl + 'user.php?act=getMobileCode&openid=' + openid,
-      success:function(res){
-        console.log(res.data)
-        wx.setStorageSync('mobCode', res.data.ex);
-      }
-    })
   }
 
 })

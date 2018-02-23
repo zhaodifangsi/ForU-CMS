@@ -2,7 +2,6 @@
   "pages":[
     "pages/user/login",
     "pages/index/index",
-    "pages/index/lottery",
     "pages/list/product",
     "pages/detail/prod",
     "pages/user/index",
@@ -11,32 +10,32 @@
   "window":{
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "拼团购",
+    "navigationBarTitleText": "shop",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color":"#666666",
-    "selectedColor":"#FFA800",
+    "selectedColor":"#666666",
     "backgroundColor":"#FFFFFF",
     "borderStyle":"white",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "团购",
+        "text": "首页",
         "iconPath": "images/share/nav/1.png",
-        "selectedIconPath": "images/share/nav/11.png"
+        "selectedIconPath": "images/share/nav/1.png"
       },
       {
-        "pagePath": "pages/index/lottery",
-        "text": "抽奖",
+        "pagePath": "pages/index/index",
+        "text": "购物车",
         "iconPath": "images/share/nav/2.png",
-        "selectedIconPath": "images/share/nav/21.png"
+        "selectedIconPath": "images/share/nav/2.png"
       },
       {
         "pagePath": "pages/user/login",
-        "text": "用户",
+        "text": "我的",
         "iconPath": "images/share/nav/3.png",
-        "selectedIconPath": "images/share/nav/31.png"
+        "selectedIconPath": "images/share/nav/3.png"
       }
     ]
   },
