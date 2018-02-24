@@ -1,7 +1,0 @@
-<!--pages/contact/contact.wxml-->
-<view class="main">
-  <map id="map" longitude="121.367803" latitude="31.260585" scale="14" markers="{{markers}}"></map>
-  <import src="../../utils/wxParse/wxParse.wxml"/>
-  <template is="wxParse" data="{{wxParseData:cont.nodes}}"/>
-  <!-- <button type="default" class="btn-callService" size="mini" bindtap="callService">呼叫客服</button> -->
-</view>
